@@ -1,0 +1,65 @@
+{
+  "name": "simple-data-offical-extensions",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --filter './official/**' build",
+    "bump": "changeset add",
+    "bump:v": "changeset version",
+    "commit": "git-cz",
+    "format": "prettier . --write --cache --list-different \"**/*.{ts,tsx,css,json,cjs.js}\"",
+    "preinstall": "npx only-allow pnpm",
+    "lint": "pnpm --filter './official/**' lint",
+    "lint:force": "pnpm --filter './official/**' lint:force",
+    "prepare": "husky",
+    "start": "pm2 start ecosystem.config.cjs",
+    "stop": "pm2 stop ecosystem.config.cjs",
+    "up:open": "pnpm update '@simple-data-open/*' --latest -r"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,css,mjs,json,yaml,md}": [
+      "bun run format",
+      "bun run lint",
+      "git add ."
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "dependencies": {
+    "typescript": "5.7.2"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.27.10",
+    "@commitlint/cli": "19.6.0",
+    "@commitlint/config-conventional": "19.6.0",
+    "@commitlint/cz-commitlint": "19.6.1",
+    "@commitlint/prompt-cli": "19.6.0",
+    "@eslint/js": "9.16.0",
+    "@trivago/prettier-plugin-sort-imports": "5.0.1",
+    "commitizen": "4.3.1",
+    "eslint": "9.16.0",
+    "globals": "15.13.0",
+    "husky": "9.1.7",
+    "inquirer": "^9.3.7",
+    "lint-staged": "15.2.10",
+    "prettier": "3.4.2",
+    "prettier-plugin-packagejson": "2.5.6",
+    "prettier-plugin-sort-json": "4.0.0",
+    "prettier-plugin-svelte": "3.3.2",
+    "typescript-eslint": "8.17.0",
+    "yaml": "^2.6.1"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "bun": ">=1.1.42",
+    "node": ">=22.11.0",
+    "pnpm": ">=9.15.0"
+  }
+}

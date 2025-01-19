@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true,
+    "allowJs": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "newLine": "lf",
+    "paths": {
+      "@simple-data-fe/editor-ui": [
+        "packages/editor-ui/dist/types",
+        "packages/editor-ui"
+      ]
+    },
+    "skipLibCheck": true,
+    // 交给 eslint 检查
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "exclude": ["./node_modules"]
+}
