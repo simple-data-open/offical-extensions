@@ -8,6 +8,7 @@
   "author": "",
   "type": "module",
   "dependencies": {
+    "@simple-data-open/utils": "^0.0.11",
     "dotenv": "^16.4.7"
   },
   "publishConfig": {

@@ -1,6 +1,6 @@
 {
   "name": "sd-chart-column",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": true,
   "description": "",
   "keywords": [],
@@ -18,7 +18,7 @@
     "@simple-data-open/adapter": "0.0.5"
   },
   "devDependencies": {
-    "@simple-data-open/simple-pack": "0.0.10",
+    "@simple-data-open/simple-pack": "0.0.17",
     "@simple-data-open/types": "0.0.8",
     "babel-loader": "^9.2.1",
     "source-map-loader": "^5.0.0",

@@ -1,8 +1,10 @@
+import { transformManifest } from '@simple-data-open/utils';
+
 import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const extensions = [
+const extension_list = [
   {
     group: 'GROUP_NAME_CAHRT',
     folder: 'charts',
@@ -10,28 +12,44 @@ const extensions = [
   },
 ];
 
-const tree = {
-  groups: extensions.map(({ group, folder, extensions }) => ({
-    group,
-    extensions: extensions.map(name => {
-      const pkg = JSON.parse(
-        fs.readFileSync(
-          path.resolve(`${folder}/${name}/package.json`),
-          'utf-8',
-        ),
+async function main() {
+  const extensions = await Promise.all(
+    extension_list.map(async ({ group, folder, extensions }) => {
+      const manifests = await Promise.all(
+        extensions.map(async name => {
+          const pkg = JSON.parse(
+            fs.readFileSync(
+              path.resolve(`${folder}/${name}/package.json`),
+              'utf-8',
+            ),
+          );
+          const { debug, ...manifest } = await transformManifest(pkg);
+          return manifest;
+        }),
       );
-      return { name, version: pkg.version };
+      return {
+        group,
+        extensions: manifests,
+      };
     }),
-  })),
-};
+  );
 
-const treeFolder = process.env.EXTENSION_TREE_DIR;
+  const tree = {
+    groups: extensions,
+  };
 
-if (!fs.existsSync(treeFolder)) {
-  fs.mkdirSync(treeFolder, { recursive: true });
+  const treeFolder = process.env.EXTENSION_TREE_DIR;
+
+  if (!fs.existsSync(treeFolder)) {
+    fs.mkdirSync(treeFolder, { recursive: true });
+  }
+
+  fs.writeFileSync(
+    path.join(treeFolder, 'extensions.json'),
+    JSON.stringify(tree),
+  );
 }
 
-fs.writeFileSync(
-  path.join(treeFolder, 'extensions.json'),
-  JSON.stringify(tree, null, 2),
-);
+await main();
+
+process.exit(0);
