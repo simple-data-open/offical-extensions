@@ -18,7 +18,7 @@
     "@simple-data-open/adapter": "0.0.5"
   },
   "devDependencies": {
-    "@simple-data-open/simple-pack": "0.0.17",
+    "@simple-data-open/simple-pack": "0.0.18",
     "@simple-data-open/types": "0.0.8",
     "babel-loader": "^9.2.1",
     "source-map-loader": "^5.0.0",
@@ -28,6 +28,7 @@
     "access": "restricted"
   },
   "simpleManifest": {
+    "icon": "assets/icon.svg",
     "debug": {
       "protocol": "http://",
       "hostname": "localhost",

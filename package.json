@@ -12,7 +12,7 @@
     "bump:v": "changeset version",
     "commit": "git-cz",
     "format": "prettier . --write --cache --list-different \"**/*.{ts,tsx,css,json,cjs.js}\"",
-    "generate:tree": "bun ./scripts/generate-builin-extension-tree.js",
+    "generate:tree": "bun ./scripts/generate-official-extension-tree.js",
     "preinstall": "npx only-allow pnpm",
     "lint": "pnpm --filter './charts/**' lint",
     "lint:force": "pnpm --filter './charts/**' lint:force",
