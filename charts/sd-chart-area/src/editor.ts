@@ -19,19 +19,17 @@ export class WidgetExtension
   public unmount = () => {};
 }
 
-export const mapSlots = (
-  slot: SimpleExtSpace.SlotCanvas | SimpleExtSpace.SlotShare,
-) => {
-  const views = {
+export const mapSlots = (slot: SimpleExtSpace.Slot) => {
+  const slots = {
     canvas: {
       widget: WidgetExtension,
     },
   };
 
-  const _slot = views[slot.view]?.[slot.slot];
+  const _slot = slots[slot];
 
   if (!_slot) {
-    console.error(`Miss slot ${slot.view} ${slot.slot}`);
+    console.error(`Miss slot ${slot}`);
   }
 
   return _slot;

@@ -4,6 +4,7 @@ import {
   ExtensionAdapterOptions,
 } from '@simple-data-open/adapter';
 
+import { generateWidgetCustomizeData } from './customize';
 import { mount } from './widget';
 
 export class WidgetExtension
@@ -19,20 +20,27 @@ export class WidgetExtension
   public unmount = () => {};
 }
 
-export const mapSlots = (
-  slot: SimpleExtSpace.SlotCanvas | SimpleExtSpace.SlotShare,
-) => {
-  const views = {
-    canvas: {
-      widget: WidgetExtension,
-    },
+export const mapSlots = (slot: SimpleExtSpace.Slot) => {
+  const slots = {
+    widget: WidgetExtension,
   };
 
-  const _slot = views[slot.view]?.[slot.slot];
+  const _slot = slots[slot];
 
   if (!_slot) {
-    console.error(`Miss slot ${slot.view} ${slot.slot}`);
+    console.error(`Miss slot ${slot}`);
   }
 
   return _slot;
 };
+
+export const mapCustomizeData = (name: string) => {
+  return {
+    widget: generateWidgetCustomizeData,
+  }[name];
+};
+
+// export const mapCoverData = (name: string) => {
+//   return {
+//   }[name];
+// };

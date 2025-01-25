@@ -15,11 +15,11 @@
     "lint": "bun run check && bunx eslint --config ./eslint.config.mjs ./src --fix"
   },
   "dependencies": {
-    "@simple-data-open/adapter": "0.0.5"
+    "@simple-data-open/adapter": "0.0.11"
   },
   "devDependencies": {
     "@simple-data-open/simple-pack": "^0.0.19",
-    "@simple-data-open/types": "0.0.8",
+    "@simple-data-open/types": "0.0.12",
     "babel-loader": "^9.2.1",
     "source-map-loader": "^5.0.0",
     "ts-loader": "^9.5.2"
@@ -52,19 +52,15 @@
     "docks": {
       "editor": {
         "css": false,
-        "slots": {
-          "canvas": [
-            "widget"
-          ]
-        }
+        "slots": [
+          "widget"
+        ]
       },
       "reader": {
         "css": false,
-        "slots": {
-          "canvas": [
-            "widget"
-          ]
-        }
+        "slots": [
+          "widget"
+        ]
       }
     }
   }
