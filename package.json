@@ -7,7 +7,8 @@
   "author": "",
   "type": "module",
   "scripts": {
-    "build": "pnpm --filter './charts/**' build",
+    "build": "bun run build:charts",
+    "build:charts": "pnpm --filter './charts/**' build",
     "bump": "changeset add",
     "bump:v": "changeset version",
     "commit": "git-cz",
@@ -17,6 +18,7 @@
     "lint": "pnpm --filter './charts/**' lint",
     "lint:force": "pnpm --filter './charts/**' lint:force",
     "prepare": "husky",
+    "publish:all": "bun ./scripts/publish.js publish --all",
     "start": "pm2 start ecosystem.config.cjs",
     "stop": "pm2 stop ecosystem.config.cjs",
     "up:open": "pnpm update '@simple-data-open/*' --latest -r"

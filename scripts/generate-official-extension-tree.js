@@ -4,17 +4,11 @@ import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const extension_list = [
-  {
-    group: 'GROUP_NAME_CAHRT',
-    folder: 'charts',
-    extensions: ['sd-chart-column'],
-  },
-];
+import { extensionList } from './extension-list.js';
 
-async function main() {
+export async function generate() {
   const extensions = await Promise.all(
-    extension_list.map(async ({ group, folder, extensions }) => {
+    extensionList.map(async ({ group, folder, extensions }) => {
       const manifests = await Promise.all(
         extensions.map(async name => {
           const pkg = JSON.parse(
@@ -38,7 +32,7 @@ async function main() {
     groups: extensions,
   };
 
-  const treeFolder = process.env.EXTENSION_TREE_DIR;
+  const treeFolder = process.env.OFFICIAL_DATA;
 
   if (!fs.existsSync(treeFolder)) {
     fs.mkdirSync(treeFolder, { recursive: true });
@@ -49,7 +43,3 @@ async function main() {
     JSON.stringify(tree),
   );
 }
-
-await main();
-
-process.exit(0);

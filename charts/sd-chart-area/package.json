@@ -1,5 +1,5 @@
 {
-  "name": "sd-chart-column",
+  "name": "sd-chart-area",
   "version": "0.0.0",
   "private": true,
   "description": "",
@@ -12,14 +12,15 @@
     "check": "bunx tsc --noEmit --project tsconfig.json",
     "dev": "simple-pack serve",
     "preinstall": "npx only-allow pnpm",
-    "lint": "bun run check && bunx eslint --config ./eslint.config.mjs ./src --fix"
+    "lint": "bun run check && bunx eslint --config ./eslint.config.mjs ./src --fix",
+    "publish": "simple-cli publish"
   },
   "dependencies": {
-    "@simple-data-open/adapter": "0.0.5"
+    "@simple-data-open/adapter": "0.0.11"
   },
   "devDependencies": {
     "@simple-data-open/simple-pack": "^0.0.19",
-    "@simple-data-open/types": "0.0.8",
+    "@simple-data-open/types": "0.0.11",
     "babel-loader": "^9.2.1",
     "source-map-loader": "^5.0.0",
     "ts-loader": "^9.5.2"
@@ -40,18 +41,18 @@
     },
     "locales": {
       "zh_CN": {
-        "title": "柱形图",
-        "description": "柱形图"
+        "title": "画布插件模板",
+        "description": "画布插件模板"
       },
       "en_US": {
-        "title": "Chart column",
-        "description": "Chart column"
+        "title": "Panel",
+        "description": "Panel"
       }
     },
     "dependences": {},
     "docks": {
       "editor": {
-        "css": false,
+        "css": true,
         "slots": {
           "canvas": [
             "widget"
@@ -59,7 +60,7 @@
         }
       },
       "reader": {
-        "css": false,
+        "css": true,
         "slots": {
           "canvas": [
             "widget"
