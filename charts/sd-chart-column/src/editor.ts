@@ -1,28 +1,13 @@
-import {
-  ExtensionAdapter,
-  ExtensionAdapterInterface,
-  ExtensionAdapterOptions,
-} from '@simple-data-open/adapter';
-
 import { generateWidgetCustomizeData } from './customize';
-import { mount } from './widget';
+import { WidgetPropertyRenderer } from './renderer/property';
+import { WidgetExtension } from './renderer/widget';
 
-export class WidgetExtension
-  extends ExtensionAdapter
-  implements ExtensionAdapterInterface
-{
-  constructor(options: ExtensionAdapterOptions) {
-    super(options);
-  }
-  public mount = () => {
-    mount(this.container);
-  };
-  public unmount = () => {};
-}
+import './editor.css';
 
 export const mapSlots = (slot: SimpleExtSpace.Slot) => {
   const slots = {
     widget: WidgetExtension,
+    property: WidgetPropertyRenderer,
   };
 
   const _slot = slots[slot];
@@ -39,8 +24,3 @@ export const mapCustomizeData = (name: string) => {
     widget: generateWidgetCustomizeData,
   }[name];
 };
-
-// export const mapCoverData = (name: string) => {
-//   return {
-//   }[name];
-// };
