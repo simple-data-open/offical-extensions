@@ -1,21 +1,17 @@
 import {
-  ExtensionAdapter,
-  ExtensionAdapterInterface,
-  ExtensionAdapterOptions,
+  WidgetAdapter,
+  WidgetAdapterInterface,
+  WidgetAdapterOptions,
 } from '@simple-data-open/adapter';
 
-import { mount } from './widget';
-
 export class WidgetExtension
-  extends ExtensionAdapter
-  implements ExtensionAdapterInterface
+  extends WidgetAdapter
+  implements WidgetAdapterInterface
 {
-  constructor(options: ExtensionAdapterOptions) {
+  constructor(options: WidgetAdapterOptions) {
     super(options);
   }
-  public mount = () => {
-    mount(this.container);
-  };
+  public mount = () => {};
   public unmount = () => {};
 }
 

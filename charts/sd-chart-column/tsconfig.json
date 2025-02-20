@@ -25,5 +25,6 @@
     "useUnknownInCatchVariables": false
   },
   "exclude": ["./node_modules"],
+  "extends": "../../tsconfig.base.json",
   "include": ["src", "types"]
 }
