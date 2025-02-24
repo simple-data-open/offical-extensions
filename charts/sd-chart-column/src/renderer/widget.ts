@@ -5,6 +5,8 @@ import {
   WidgetAdapterOptions,
 } from '@simple-data-open/adapter';
 
+import { formatTheme } from '../theme/format';
+
 export class WidgetExtension
   extends WidgetAdapter<SimpleExtensionCustomizeWidget>
   implements WidgetAdapterInterface
@@ -42,34 +44,43 @@ export class WidgetExtension
 
     this.chart?.destroy();
 
-    const { x, y } = this.instance.custom_data;
-    const data = [
-      { [x]: 'H', [y]: 0.06094 },
-      { [x]: 'I', [y]: 0.06966 },
-      { [x]: 'J', [y]: 0.00153 },
-      { [x]: 'K', [y]: 0.00772 },
-      { [x]: 'L', [y]: 0.04025 },
-      { [x]: 'M', [y]: 0.02406 },
-      { [x]: 'N', [y]: 0.06749 },
-      { [x]: 'O', [y]: 0.07507 },
-      { [x]: 'P', [y]: 0.01929 },
-      { [x]: 'Q', [y]: 0.00095 },
-      { [x]: 'R', [y]: 0.05987 },
-      { [x]: 'S', [y]: 0.06327 },
-      { [x]: 'T', [y]: 0.09056 },
-      { [x]: 'U', [y]: 0.02758 },
-      { [x]: 'V', [y]: 0.00978 },
-      { [x]: 'W', [y]: 0.0236 },
-      { [x]: 'X', [y]: 0.0015 },
-      { [x]: 'Y', [y]: 0.01974 },
-      { [x]: 'Z', [y]: 0.00074 },
-    ];
+    const { datasource, custom_data: customData } = this.instance;
+
     const chart = new Chart({
       container: this.box,
       autoFit: true,
     });
 
-    chart.interval().data(data).encode('x', x).encode('y', y);
+    chart.interval();
+    chart.options({
+      title: {
+        title: customData.title.maintitle.text,
+        subtitle: customData.title.subtitle.text,
+      },
+    });
+
+    chart.data(datasource.data);
+
+    customData.encodes.forEach(({ channel, field }) => {
+      chart.encode(channel, field);
+    });
+
+    customData.transforms.forEach(({ type, order_by, reverse }) => {
+      chart.transform({
+        type,
+        orderBy: order_by,
+        reverse,
+      });
+    });
+
+    chart.axis('y', {
+      title: customData.axis.y.title,
+    });
+    chart.axis('x', {
+      title: customData.axis.x.title,
+    });
+
+    chart.theme(formatTheme(customData));
 
     chart.render();
 
@@ -93,8 +104,20 @@ export class WidgetExtension
   };
 
   public update = chain => {
-    if (chain[1] === 'x' || chain[1] === 'y') {
-      this.createInstance();
-    }
+    const excludes = [
+      'name',
+      'appearance',
+      'background',
+      'border',
+      'extension',
+      'hide',
+      'id',
+      'position',
+      'rotation',
+      'schema',
+    ];
+    if (excludes.includes(chain[0])) return;
+
+    this.createInstance();
   };
 }

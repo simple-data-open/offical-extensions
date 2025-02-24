@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@antv/g2": "5.2.11",
-    "@simple-data-open/adapter": "0.0.32"
+    "@simple-data-open/adapter": "0.0.39"
   },
   "devDependencies": {
     "@simple-data-open/simple-pack": "^0.0.22",
-    "@simple-data-open/types": "0.0.20",
+    "@simple-data-open/types": "0.0.25",
     "babel-loader": "^9.2.1",
     "source-map-loader": "^5.0.0",
     "ts-loader": "^9.5.2"
@@ -34,7 +34,7 @@
       "protocol": "http://",
       "hostname": "localhost",
       "port": 10010,
-      "serve": "ws://192.168.50.41:9999"
+      "serve": "ws://127.0.0.1:9999"
     },
     "engines": {
       "simple": "1.0.0"
