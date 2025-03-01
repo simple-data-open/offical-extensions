@@ -35,8 +35,14 @@ export class WidgetExtension
   public unmount = () => {
     if (this.renderTask !== null) {
       window.cancelIdleCallback(this.renderTask);
+      this.renderTask = null;
     }
+    this.chart?.clear();
+    this.chart?.off();
     this.chart?.destroy();
+    this.chart = null;
+    this.box?.remove();
+    this.box = null;
   };
 
   public createInstance = () => {

@@ -1,13 +1,59 @@
 import { PropertyAdapter, PropertyGroupModel } from '@simple-data-open/adapter';
 
 export class WidgetPropertyRenderer extends PropertyAdapter {
-  public render = (_data: any): PropertyGroupModel[] => {
+  public onValueChange = (chain: SimpleModifier.ChainType) => {
+    if (chain[0] === 'datasource') {
+      this.rerender?.();
+      return true;
+    }
+    return false;
+  };
+
+  public render = (
+    instance: SimpleExtSpace.Widget<SimpleExtensionCustomizeWidget>,
+  ): PropertyGroupModel[] => {
     return [
       {
         name: '数据',
         renderers: [
           {
-            name: '修改数据源',
+            name: 'X 轴',
+            chains: [['custom_data', 'encodes', 0, 'field']],
+            render: 'select',
+            span: 2,
+            options: {
+              options: instance.datasource.columns.map(col => ({
+                label: col.field,
+                value: col.field,
+              })),
+            },
+          },
+          {
+            name: 'Y 轴',
+            chains: [['custom_data', 'encodes', 1, 'field']],
+            render: 'select',
+            span: 2,
+            options: {
+              options: instance.datasource.columns.map(col => ({
+                label: col.field,
+                value: col.field,
+              })),
+            },
+          },
+          {
+            name: '分组',
+            chains: [['custom_data', 'encodes', 2, 'field']],
+            render: 'select',
+            span: 2,
+            options: {
+              options: instance.datasource.columns.map(col => ({
+                label: col.field,
+                value: col.field,
+              })),
+            },
+          },
+          {
+            name: '',
             chains: [['datasource']],
             render: 'data',
             span: 4,
