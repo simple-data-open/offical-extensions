@@ -32,14 +32,9 @@ export async function generate() {
     groups: extensions,
   };
 
-  const treeFolder = process.env.OFFICIAL_DATA;
-
-  if (!fs.existsSync(treeFolder)) {
-    fs.mkdirSync(treeFolder, { recursive: true });
-  }
-
-  fs.writeFileSync(
-    path.join(treeFolder, 'extensions.json'),
-    JSON.stringify(tree),
-  );
+  fs.writeFileSync(path.join('./extensions.json'), JSON.stringify(tree));
 }
+
+await generate();
+
+process.exit(0);

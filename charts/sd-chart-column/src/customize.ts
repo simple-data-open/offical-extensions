@@ -37,6 +37,11 @@ export const generateWidgetCustomizeData =
         title: '降雨量',
       },
     },
+    legend: {
+      item: {
+        marker: 'circle',
+      },
+    },
     encodes: [
       {
         channel: 'x',
@@ -66,6 +71,7 @@ export const generateWidgetCover = (): SimpleExtSpace.WidgetCover => ({
     fixed: false,
   },
   datasource: {
+    id: '',
     source: 'custom',
     columns: [
       {

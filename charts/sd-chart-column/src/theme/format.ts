@@ -1,11 +1,11 @@
 import { transformFont } from './utils';
 
 function extractColor(color: string) {
-  return window.editorInhSDK.colorPicker.toHexa(color).hex;
+  return window.SimpleSDK.color.toHexa(color).hex;
 }
 
 function extractColorAlpha(color: string) {
-  return window.editorInhSDK.colorPicker.toHexa(color).alpha;
+  return window.SimpleSDK.color.toHexa(color).alpha;
 }
 
 export const formatTheme = (customize: SimpleExtensionCustomizeWidget) => ({

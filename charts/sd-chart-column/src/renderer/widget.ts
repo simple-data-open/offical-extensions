@@ -15,8 +15,6 @@ export class WidgetExtension
 
   private box: HTMLDivElement | null = null;
 
-  private renderTask: number | null = null;
-
   constructor(options: WidgetAdapterOptions) {
     super(options);
   }
@@ -33,10 +31,6 @@ export class WidgetExtension
     this.createInstance();
   };
   public unmount = () => {
-    if (this.renderTask !== null) {
-      window.cancelIdleCallback(this.renderTask);
-      this.renderTask = null;
-    }
     this.chart?.clear();
     this.chart?.off();
     this.chart?.destroy();
@@ -57,13 +51,14 @@ export class WidgetExtension
       autoFit: true,
     });
 
-    chart.interval();
     chart.options({
       title: {
         title: customData.title.maintitle.text,
         subtitle: customData.title.subtitle.text,
       },
     });
+    // @ts-expect-error - antv g2 类型问题
+    chart.interval().animate('enter', { type: false });
 
     chart.data(datasource.data);
 
@@ -86,6 +81,12 @@ export class WidgetExtension
       title: customData.axis.x.title,
     });
 
+    chart.legend({
+      color: {
+        itemMarker: customData.legend.item.marker,
+      },
+    });
+
     chart.theme(formatTheme(customData));
 
     chart.render();
@@ -95,18 +96,8 @@ export class WidgetExtension
 
   timer: number | null = null;
 
-  private handleChangeSizes = (deadline: IdleDeadline) => {
-    if (deadline.timeRemaining() > 0) {
-      this.chart?.forceFit();
-    }
-  };
-
   public resize = () => {
-    if (this.renderTask !== null) {
-      window.cancelIdleCallback(this.renderTask);
-    }
-
-    this.renderTask = window.requestIdleCallback(this.handleChangeSizes);
+    this.chart?.forceFit();
   };
 
   public update = chain => {

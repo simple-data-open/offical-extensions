@@ -25,3 +25,5 @@ dist
 app.config.yml
 app.config.json
 dock.config.json
+
+extensions.json

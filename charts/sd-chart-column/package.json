@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@antv/g2": "5.2.11",
-    "@simple-data-open/adapter": "0.0.47"
+    "@simple-data-open/adapter": "0.0.51"
   },
   "devDependencies": {
-    "@simple-data-open/simple-pack": "^0.0.22",
-    "@simple-data-open/types": "0.0.25",
+    "@simple-data-open/simple-pack": "^0.0.28",
+    "@simple-data-open/types": "0.0.31",
     "babel-loader": "^9.2.1",
     "source-map-loader": "^5.0.0",
     "ts-loader": "^9.5.2"

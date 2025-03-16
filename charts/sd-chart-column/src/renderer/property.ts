@@ -53,7 +53,6 @@ export class WidgetPropertyRenderer extends PropertyAdapter {
             },
           },
           {
-            name: '',
             chains: [['datasource']],
             render: 'data',
             span: 4,
@@ -70,6 +69,12 @@ export class WidgetPropertyRenderer extends PropertyAdapter {
             span: 2,
           },
           {
+            name: '副标题',
+            chains: [['custom_data', 'title', 'subtitle', 'text']],
+            render: 'text',
+            span: 2,
+          },
+          {
             name: '标题高度',
             chains: [['custom_data', 'title', 'size']],
             render: 'number',
@@ -82,10 +87,26 @@ export class WidgetPropertyRenderer extends PropertyAdapter {
             span: 2,
           },
           {
-            name: '副标题',
-            chains: [['custom_data', 'title', 'subtitle', 'text']],
-            render: 'text',
+            name: '对齐方式',
+            chains: [['custom_data', 'title', 'align']],
+            render: 'select',
             span: 2,
+            options: {
+              options: [
+                {
+                  label: '左对齐',
+                  value: 'left',
+                },
+                {
+                  label: '居中对齐',
+                  value: 'center',
+                },
+                {
+                  label: '右对齐',
+                  value: 'right',
+                },
+              ],
+            },
           },
           {
             name: '主标题颜色',
@@ -120,6 +141,29 @@ export class WidgetPropertyRenderer extends PropertyAdapter {
             chains: [['custom_data', 'axis', 'y', 'title']],
             render: 'text',
             span: 3,
+          },
+        ],
+      },
+      {
+        name: 'Legend',
+        renderers: [
+          {
+            name: 'Icon',
+            chains: [['custom_data', 'legend', 'item', 'marker']],
+            render: 'select',
+            span: 3,
+            options: {
+              options: [
+                {
+                  label: 'circle',
+                  value: 'circle',
+                },
+                {
+                  label: 'square',
+                  value: 'square',
+                },
+              ],
+            },
           },
         ],
       },

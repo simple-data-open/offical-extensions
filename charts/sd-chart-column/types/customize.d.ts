@@ -33,6 +33,11 @@ declare interface SimpleExtensionCustomizeWidget {
       title: string;
     };
   };
+  legend: {
+    item: {
+      marker: 'circle' | 'square';
+    };
+  };
   encodes: {
     channel: 'x' | 'y' | 'color';
     field: string;

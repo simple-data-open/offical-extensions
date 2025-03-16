@@ -8,7 +8,7 @@
   "author": "",
   "type": "module",
   "dependencies": {
-    "@simple-data-open/utils": "^0.0.13",
+    "@simple-data-open/utils": "^0.0.18",
     "commander": "^13.1.0",
     "dotenv": "^16.4.7"
   },
